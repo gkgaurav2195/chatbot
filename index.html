@@ -15,7 +15,7 @@
  
 This is my page!!
 
- 
+ <button onclick="myFunction()">Click me</button>
  
 
  
@@ -42,11 +42,13 @@ This is my page!!
 
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
- 
+ function myFunction() {
+  document.getElementsByClassName('helpButtonEnabled')[0].click();
+}
  // auto open script
 
  
-setInterval(function(){
+/*setInterval(function(){
 
  
 if (document.getElementsByClassName('helpButtonEnabled').length >= 1) {
@@ -58,7 +60,7 @@ document.getElementsByClassName('helpButtonEnabled')[0].click();
 }
 
  
-}, 8000);
+}, 8000);*/
 
  
 //end auto open
