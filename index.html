@@ -39,84 +39,58 @@ This is my page!!
 		font-family: slate;
 }
 </style>
-
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'>
 <script type='text/javascript'>
- function myFunction() {
-  document.getElementsByClassName('helpButtonEnabled')[0].click();
+var initESW = function(gslbBaseURL) {
+embedded_svc.settings.displayHelpButton = true; //Or false
+embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+ //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+ //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+ // Settings for Chat
+//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+// Returns a valid button ID.
+//};
+//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+ embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+embedded_svc.settings.entryFeature = 'LiveAgent';
+
+ embedded_svc.init(
+'https://farmerssrm--solex2.my.salesforce.com',
+'https://solex2-farmerssrm-farmersinsuranceliveagent.cs97.force.com',
+gslbBaseURL,
+'00D0U000000H21G',
+'Alex_Chat_Bot_Deployment',
+{
+baseLiveAgentContentURL: 'https://c.la2-c1cs-ord.salesforceliveagent.com/content',
+deploymentId: '5720U00000003rg',
+buttonId: '5730U00000004xh',
+baseLiveAgentURL: 'https://d.la2-c1cs-ord.salesforceliveagent.com/chat',
+eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I0U000000CancUAC_176d77fa5bb',
+isOfflineSupportEnabled: false
 }
- // auto open script
+);
+};
 
- 
-/*setInterval(function(){
-
- 
-if (document.getElementsByClassName('helpButtonEnabled').length >= 1) {
-
- 
-document.getElementsByClassName('helpButtonEnabled')[0].click();
-
- 
+ if (!window.embedded_svc) {
+var s = document.createElement('script');
+s.setAttribute('src', 'https://farmerssrm--solex2.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+s.onload = function() {
+initESW(null);
+};
+document.body.appendChild(s);
+} else {
+initESW('https://service.force.com');
 }
-
- 
-}, 8000);*/
-
- 
-//end auto open
-
-	var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true; //Or false
-		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
-
-		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-
-		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-
-		// Settings for Chat
-		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-			// Returns a valid button ID.
-		//};
-		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-		embedded_svc.settings.entryFeature = 'LiveAgent';
-
-		embedded_svc.init(
-			'https://farmerssrm--solex4.my.salesforce.com',
-			'https://solex4-farmerssrm.cs67.force.com/AgencyCommunityPortal',
-			gslbBaseURL,
-			'00D0n00000015N4',
-			'Alex_Chat_Bot_Deployment',
-			{
-				baseLiveAgentContentURL: 'https://c.la1-c1cs-iad.salesforceliveagent.com/content',
-				deploymentId: '5720n0000008P9Z',
-				buttonId: '5730n0000008PUs',
-				baseLiveAgentURL: 'https://d.la1-c1cs-iad.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I0n0000008Oc5EAE_175977651e7',
-				isOfflineSupportEnabled: false
-			}
-		);
-	};
-
-	if (!window.embedded_svc) {
-		var s = document.createElement('script');
-		s.setAttribute('src', 'https://farmerssrm--solex4.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-		s.onload = function() {
-			initESW(null);
-		};
-		document.body.appendChild(s);
-	} else {
-		initESW('https://service.force.com');
-	}
 </script>
- 
-
  
  
 
